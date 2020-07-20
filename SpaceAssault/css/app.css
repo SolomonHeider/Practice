@@ -32,6 +32,17 @@ canvas {
     color: white;
     font-size: 2em;
 }
+#manna {
+    float: right;
+    color: white;
+    font-size: 2em;
+}
+.score-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 
 .key {
     color: #aaffdd;
