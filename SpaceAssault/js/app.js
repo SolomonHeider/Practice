@@ -392,11 +392,19 @@ function generateMegalithes() {
     var megalithesCount = randomInteger(3, 5);
     
     for (let i = 0; i <= megalithesCount; i++) {
+        if (randomInteger(1,2) == 1) {
+            var pos = [3, 213];
+            var size = [55, 53];
+        }
+        else {
+            var pos = [5, 274];
+            var size = [48, 42];
+        }
         megalithes.push (
             {
                 pos: [Math.random() * (canvas.width - 48),
                     Math.random() * (canvas.height - 42)],
-                sprite: new Sprite('img/sprites.png', [5, 274], [48, 42], 0)
+                sprite: new Sprite('img/sprites.png', pos, size, 0)
             }
        );
     }
