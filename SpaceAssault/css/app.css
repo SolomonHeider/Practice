@@ -19,6 +19,9 @@ canvas {
     width: 512px;
     margin: 0 auto;
     margin-top: 2em;
+    position: relative;
+    z-index: 1;
+    font-size: 3vh;
 }
 
 #instructions {
@@ -30,17 +33,16 @@ canvas {
 #score {
     float: right;
     color: white;
-    font-size: 2em;
 }
 #manna {
     float: right;
     color: white;
-    font-size: 2em;
 }
 .score-wrapper{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    position: relative;
 }
 
 
