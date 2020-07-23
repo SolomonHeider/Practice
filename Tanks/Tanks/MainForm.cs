@@ -30,7 +30,7 @@ namespace Tanks
         private void btnStartGame_Click(object sender, EventArgs e)
         {        
             newGame = new MainGame(5, 5);
-            GameStep.Interval = 50;
+            GameStep.Interval = 60;
             newGame.Start(this);
             GameStep.Enabled = true;
         }
@@ -38,6 +38,7 @@ namespace Tanks
         private void GameStep_Tick(object sender, EventArgs e)
         {
             newGame.Step();
+            labelScore.Text = "SCORE: " + newGame.Score;
             if (newGame.isGameOver && newGame.moveStep==30)
             {
                 GameStep.Enabled = false;
@@ -52,6 +53,11 @@ namespace Tanks
         }
 
         private void tanksMap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

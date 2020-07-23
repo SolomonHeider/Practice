@@ -7,6 +7,7 @@ namespace Tanks
 {
     public class Kolobok:MovableObject
     {
+        public event CreateShot Shot;
         public Kolobok():base()
         {
             Img = new Bitmap(Resources.kolobok);
@@ -40,20 +41,25 @@ namespace Tanks
                         {
                             ((Kolobok)sender).IdentifyDirection((int)Direction.Right);
                             break;
-                        }                   
-                    default:
+                        }
+                    case Keys.E:
+                    {
+                        Shot?.Invoke(this);
+                        break;
+                    }
+                default:
                         break;
                 }             
         }
         //движение
         public void Move(List<Wall> Walls)
         {
-            switch (DirectionTo)
+            switch (direction)
             {
                 case (int)Direction.Down:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         Y++;
                         if (CollidesWithWalls(Walls))
                         {
@@ -63,8 +69,8 @@ namespace Tanks
                     }
                 case (int)Direction.Left:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         X--;
                         if (CollidesWithWalls(Walls))
                         {
@@ -74,8 +80,8 @@ namespace Tanks
                     }
                 case (int)Direction.Right:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         X++;
                         if (CollidesWithWalls(Walls))
                         {
@@ -85,8 +91,8 @@ namespace Tanks
                     }
                 case (int)Direction.Up:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         Y--;
                         if (CollidesWithWalls(Walls))
                         {

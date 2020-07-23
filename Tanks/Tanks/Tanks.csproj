@@ -67,6 +67,7 @@
       <DependentUpon>AboutObjectsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Apple.cs" />
+    <Compile Include="Bullet.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="MovableObject.cs" />
@@ -128,6 +129,7 @@
     <None Include="Images\kolobok.png" />
     <None Include="Images\tank.png" />
     <None Include="Images\gameOver.png" />
+    <Content Include="Images\bullet.png" />
     <Content Include="Images\wall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

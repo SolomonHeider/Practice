@@ -7,7 +7,9 @@ namespace Tanks
 {
     public class Tank: MovableObject
     {
-        private Random rnd = new Random();
+        private Random Rnd = new Random();
+        public event CreateShot Shot;
+
         public Tank() : base()
         {
             Img = new Bitmap(Resources.tank);
@@ -20,17 +22,21 @@ namespace Tanks
 
         public void Move(List<Wall> Walls, List<Tank> Tanks)
         {
-            if (rnd.NextDouble() < 0.4)
+            if (Rnd.NextDouble() < 0.4)
             {
                 IdentifyDirection(MainForm.rnd.Next(0, 4));
             }
+            if (Rnd.NextDouble() < 0.15)
+            {
+                Shot?.Invoke(this);
+            }
 
-            switch (DirectionTo)
+            switch (direction)
             {
                 case (int)Direction.Down:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         Y++;
                         if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
                         {
@@ -41,8 +47,8 @@ namespace Tanks
                     }
                 case (int)Direction.Left:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         X--;
                         if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
                         {
@@ -53,8 +59,8 @@ namespace Tanks
                     }
                 case (int)Direction.Right:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         X++;
                         if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
                         {
@@ -65,8 +71,8 @@ namespace Tanks
                     }
                 case (int)Direction.Up:
                     {
-                        OldY = Y;
-                        OldX = X;
+                        oldY = Y;
+                        oldX = X;
                         Y--;
                         if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
                         {

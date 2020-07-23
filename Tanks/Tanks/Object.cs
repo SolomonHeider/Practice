@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Tanks
 {
@@ -25,11 +27,9 @@ namespace Tanks
 
         public bool CollidesWith(Object obj)
         {
-            if (X == obj.X && Y == obj.Y || X < 0 || X >= 20 || Y < 0 || Y >= 20)
-            {
-                return true;
-            }
-            return false;
+            Rectangle rectA = new Rectangle(X * MainForm.cellSize, Y * MainForm.cellSize, 25, 25);
+            Rectangle rectB = new Rectangle(obj.X * MainForm.cellSize, obj.Y * MainForm.cellSize, 25, 25);
+            return rectA.IntersectsWith(rectB);
         }
     }
 }
