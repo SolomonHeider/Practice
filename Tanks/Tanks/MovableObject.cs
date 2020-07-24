@@ -66,5 +66,17 @@ namespace Tanks
             return false;
         }
 
+        public bool CollidesWithRivers(List<River> Rivers)
+        {
+            for (int i = 0; i < Rivers.Count; i++)
+            {
+                if (CollidesWith(Rivers[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

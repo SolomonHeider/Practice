@@ -20,7 +20,7 @@ namespace Tanks
             Img = new Bitmap(Resources.tank);
         }
 
-        public void Move(List<Wall> Walls, List<Tank> Tanks)
+        public void Move(List<Wall> Walls, List<River> Rivers, List<Tank> Tanks)
         {
             if (Rnd.NextDouble() < 0.4)
             {
@@ -38,7 +38,7 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         Y++;
-                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
+                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks) || CollidesWithRivers(Rivers))
                         {
                             Y--;
                             IdentifyDirection((int)Direction.Up);
@@ -50,7 +50,7 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         X--;
-                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
+                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks) || CollidesWithRivers(Rivers))
                         {
                             X++;
                             IdentifyDirection((int)Direction.Right);
@@ -62,7 +62,7 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         X++;
-                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
+                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks) || CollidesWithRivers(Rivers))
                         {
                             X--;
                             IdentifyDirection((int)Direction.Left);
@@ -74,7 +74,7 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         Y--;
-                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks))
+                        if (CollidesWithWalls(Walls) || CollidesWithTanks(Tanks) || CollidesWithRivers(Rivers))
                         {
                             Y++;
                             IdentifyDirection((int)Direction.Down);
@@ -96,5 +96,6 @@ namespace Tanks
             }
             return false;
         }
+        
     }
 }

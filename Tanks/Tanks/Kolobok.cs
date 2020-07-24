@@ -22,26 +22,31 @@ namespace Tanks
         {
                 switch (e.KeyData)
                 {
+                    case Keys.Up:
                     case Keys.W:
                         {
                             ((Kolobok)sender).IdentifyDirection((int)Direction.Up);
                             break;
                         }
+                    case Keys.Down:
                     case Keys.S:
                         {
                             ((Kolobok)sender).IdentifyDirection((int)Direction.Down);
                             break;
                         }
+                    case Keys.Left:
                     case Keys.A:
                         {
                             ((Kolobok)sender).IdentifyDirection((int)Direction.Left);
                             break;
                         }
+                    case Keys.Right:
                     case Keys.D:
                         {
                             ((Kolobok)sender).IdentifyDirection((int)Direction.Right);
                             break;
                         }
+                    case Keys.Space:
                     case Keys.E:
                     {
                         Shot?.Invoke(this);
@@ -52,7 +57,7 @@ namespace Tanks
                 }             
         }
         //движение
-        public void Move(List<Wall> Walls)
+        public void Move(List<Wall> Walls, List<River> Rivers)
         {
             switch (direction)
             {
@@ -61,8 +66,9 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         Y++;
-                        if (CollidesWithWalls(Walls))
+                        if (CollidesWithWalls(Walls) || CollidesWithRivers(Rivers))
                         {
+                            IdentifyDirection((int)Direction.Up);
                             Y--;
                         }
                         break;
@@ -72,8 +78,9 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         X--;
-                        if (CollidesWithWalls(Walls))
+                        if (CollidesWithWalls(Walls) || CollidesWithRivers(Rivers))
                         {
+                            IdentifyDirection((int)Direction.Right);
                             X++;
                         }
                         break;
@@ -83,8 +90,9 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         X++;
-                        if (CollidesWithWalls(Walls))
+                        if (CollidesWithWalls(Walls) || CollidesWithRivers(Rivers))
                         {
+                            IdentifyDirection((int)Direction.Left);
                             X--;
                         }
                         break;
@@ -94,8 +102,9 @@ namespace Tanks
                         oldY = Y;
                         oldX = X;
                         Y--;
-                        if (CollidesWithWalls(Walls))
+                        if (CollidesWithWalls(Walls) || CollidesWithRivers(Rivers))
                         {
+                            IdentifyDirection((int)Direction.Down);
                             Y++;
                         }
                         break;

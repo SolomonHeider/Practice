@@ -17,6 +17,7 @@ namespace Tanks
         public List<Bullet> BulletsKolobok { get; set; } = new List<Bullet>();
 
         public List<Wall> Walls { get; set; } = new List<Wall>();
+        public List<River> Rivers { get; set; } = new List<River>();
         public List<Apple> Apples { get; set; } = new List<Apple>();
         private int applesCount = 5;
 
@@ -35,14 +36,14 @@ namespace Tanks
                                          "*  **  **  **  **  *",
                                          "*  **          **  *",
                                          "*     **    **     *",
-                                         "*                  *",
-                                         "*  ****      ****  *",
-                                         "*       *  *       *",
-                                         "*       *  *       *",
-                                         "*  ****      ****  *",
-                                         "*                  *",
-                                         "*     **    **     *",
-                                         "*  **          **  *",
+                                         "*        #         *",
+                                         "*  ****  #   ****  *",
+                                         "*  #######         *",
+                                         "*  #               *",
+                                         "*  #***      ****  *",
+                                         "*###          #####*",
+                                         "*     **    **#    *",
+                                         "*  **       ###**  *",
                                          "*  **  **  **  **  *",
                                          "*  **  ******  **  *",
                                          "*  **  **  **  **  *",
@@ -81,6 +82,11 @@ namespace Tanks
                         Walls.Add(new Wall(j, i));
                         mapGraphics.DrawImage(Walls.Last().Img, Walls.Last().X * MainForm.cellSize, Walls.Last().Y * MainForm.cellSize, MainForm.cellSize, MainForm.cellSize);
                     }
+                    else if (wallsPattern[i][j] == '#')
+                    {
+                        Rivers.Add(new River(j, i));
+                        mapGraphics.DrawImage(Rivers.Last().Img, Rivers.Last().X * MainForm.cellSize, Rivers.Last().Y * MainForm.cellSize, MainForm.cellSize, MainForm.cellSize);
+                    }
                 }              
             }
             
@@ -102,7 +108,7 @@ namespace Tanks
             while(true)
             {
                 kolobok = new Kolobok();
-                if (!kolobok.CollidesWithWalls(Walls))
+                if (!kolobok.CollidesWithWalls(Walls)&& !kolobok.CollidesWithRivers(Rivers))
                 {                   
                     break;
                 }
@@ -129,6 +135,19 @@ namespace Tanks
                         break;
                     }
                 }
+                if (Apples.Count > 0)
+                {
+                    //если коллизия с рекой, переспавнить
+                    for (int i = 0; i < Rivers.Count; i++)
+                    {
+                        if (Apples.Last().CollidesWith(Rivers[i]))
+                        {
+                            Apples.RemoveAt(Apples.Count - 1);
+                            break;
+                        }
+                    }
+                }
+                
                 //если коллизия с другим яблоком, переспавнить
                 for (int i = 0; i < Apples.Count; i++)
                 {
@@ -155,13 +174,25 @@ namespace Tanks
                         break;
                     }
                 }
-
+                //если коллизия с другим танком, переспавнить
                 for (int i = 0; i < Tanks.Count; i++)
                 {
                     if (Tanks.Last().CollidesWith(Tanks[i]) && Tanks.Last() != Tanks[i])
                     {
                        Tanks.RemoveAt(Tanks.Count - 1);
                         break;
+                    }
+                }
+                if (Tanks.Count > 0)
+                {
+                    for (int i = 0; i < Rivers.Count; i++)
+                    {
+                        //если коллизия с рекой, переспавнить
+                        if (Tanks.Last().CollidesWith(Rivers[i]))
+                        {
+                            Tanks.RemoveAt(Tanks.Count - 1);
+                            break;
+                        }
                     }
                 }
             }          
@@ -192,13 +223,13 @@ namespace Tanks
                 return;
             }
 
-            kolobok.Move(Walls);
+            kolobok.Move(Walls, Rivers);
             moveStep = 5;
             MoveObject(kolobok, moveStep);
 
             for (int i = 0; i < Tanks.Count; i++)
             {
-                Tanks[i].Move(Walls, Tanks);
+                Tanks[i].Move(Walls, Rivers, Tanks);
 
                 MoveObject(Tanks[i], moveStep);
             }
@@ -239,11 +270,9 @@ namespace Tanks
                     BulletsKolobok.RemoveAt(i);
                     i--;
                     continue;
-                }
+                }                
                 MoveObject(BulletsKolobok[i], moveStep);
-            }
-
-            
+            }           
 
             for (int i = 0; i < BulletsTanks.Count; i++)
             {
@@ -280,6 +309,11 @@ namespace Tanks
             moveStep += 5;
             mapGraphics.DrawImage(Walls[0].Img, Walls[0].X * MainForm.cellSize, Walls[0].Y * MainForm.cellSize, MainForm.cellSize, MainForm.cellSize);
             mapGraphics.DrawImage(Walls[1].Img, Walls[1].X * MainForm.cellSize, Walls[1].Y * MainForm.cellSize, MainForm.cellSize, MainForm.cellSize);
+            foreach (var item in Rivers)
+            {
+                mapGraphics.DrawImage(item.Img, item.X * MainForm.cellSize, item.Y * MainForm.cellSize, MainForm.cellSize, MainForm.cellSize);
+
+            }
             map.Image = backgroundMap;
 
         }

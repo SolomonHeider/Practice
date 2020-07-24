@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Tanks
 {
-    public partial class AboutObjectsForm : Form
+    public partial class PositionsForm : Form
     {
-        public AboutObjectsForm()
+        public PositionsForm()
         {
             InitializeComponent();
         }

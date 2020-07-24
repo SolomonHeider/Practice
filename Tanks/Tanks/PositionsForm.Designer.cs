@@ -1,6 +1,6 @@
 ﻿namespace Tanks
 {
-    partial class AboutObjectsForm
+    partial class PositionsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,70 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlAboutObjects = new System.Windows.Forms.DataGridView();
+            this.gwPositions = new System.Windows.Forms.DataGridView();
             this.Object = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.ctlAboutObjects)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gwPositions)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctlAboutObjects
+            // gwPositions
             // 
-            this.ctlAboutObjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ctlAboutObjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gwPositions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gwPositions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Object,
             this.X,
             this.Y});
-            this.ctlAboutObjects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlAboutObjects.Location = new System.Drawing.Point(0, 0);
-            this.ctlAboutObjects.Margin = new System.Windows.Forms.Padding(5);
-            this.ctlAboutObjects.Name = "ctlAboutObjects";
-            this.ctlAboutObjects.ReadOnly = true;
-            this.ctlAboutObjects.RowTemplate.Height = 24;
-            this.ctlAboutObjects.Size = new System.Drawing.Size(323, 568);
-            this.ctlAboutObjects.TabIndex = 0;
+            this.gwPositions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gwPositions.Location = new System.Drawing.Point(0, 0);
+            this.gwPositions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gwPositions.Name = "gwPositions";
+            this.gwPositions.ReadOnly = true;
+            this.gwPositions.RowHeadersWidth = 51;
+            this.gwPositions.RowTemplate.Height = 24;
+            this.gwPositions.Size = new System.Drawing.Size(474, 331);
+            this.gwPositions.TabIndex = 0;
             // 
             // Object
             // 
             this.Object.HeaderText = "Object";
+            this.Object.MinimumWidth = 6;
             this.Object.Name = "Object";
             this.Object.ReadOnly = true;
-            this.Object.Width = 200;
+            this.Object.Width = 300;
             // 
             // X
             // 
             this.X.HeaderText = "X";
+            this.X.MinimumWidth = 6;
             this.X.Name = "X";
             this.X.ReadOnly = true;
-            this.X.Width = 40;
+            this.X.Width = 60;
             // 
             // Y
             // 
             this.Y.HeaderText = "Y";
+            this.Y.MinimumWidth = 6;
             this.Y.Name = "Y";
             this.Y.ReadOnly = true;
-            this.Y.Width = 40;
+            this.Y.Width = 60;
             // 
-            // AboutObjectsForm
+            // PositionsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 568);
-            this.Controls.Add(this.ctlAboutObjects);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "AboutObjectsForm";
+            this.ClientSize = new System.Drawing.Size(474, 331);
+            this.Controls.Add(this.gwPositions);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "PositionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "About Objects";
+            this.Text = "Objects";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AboutObjectsForm_FormClosed);
             this.Load += new System.EventHandler(this.AboutObjectsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ctlAboutObjects)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gwPositions)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        public System.Windows.Forms.DataGridView ctlAboutObjects;
+        public System.Windows.Forms.DataGridView gwPositions;
         private System.Windows.Forms.DataGridViewTextBoxColumn Object;
         private System.Windows.Forms.DataGridViewTextBoxColumn X;
         private System.Windows.Forms.DataGridViewTextBoxColumn Y;
